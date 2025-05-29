@@ -7,6 +7,7 @@ import { Redirect, Route, Switch } from 'react-router-dom';
 import { CpuInfo } from './hwinfo/CpuInfo';
 import CpuInfoModel from './models/CpuInfoModel';
 import { OsImage } from './utils/OsImage';
+import { MemoryInfo } from './hwinfo/MemoryInfo';
 
 export const App = () => {
   const [basicInfo, setBasicInfo] = useState<SystemInfoModel>();
@@ -71,9 +72,6 @@ export const App = () => {
   return(
     <div className='d-flex flex-column min-vh-100'>
       <SystemNav system_name={basicInfo?.system_name} node_name={basicInfo?.node_name}/>
-      <div className='container mt-5'>
-        <OsImage system_name={basicInfo?.system_name} />
-      </div>
       <div className='flex-grow-1'>
         <Switch>
           <Route path="/" exact>
@@ -84,6 +82,9 @@ export const App = () => {
           </Route>
           <Route path="/cpu">
             <CpuInfo theCpuInfo={theCpuInfo} />
+          </Route>
+          <Route path="/ram">
+            <MemoryInfo />
           </Route>
         </Switch>
       </div>

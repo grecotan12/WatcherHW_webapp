@@ -26,7 +26,7 @@ export const SystemNav: React.FC<{ system_name: string | undefined, node_name: s
                             </li>
                             <hr />
                             <li className="nav-item">
-                                <a className="nav-link" href="#">Memory Performance</a>
+                                <NavLink className="nav-link"  to="/ram">Memory Performance</NavLink>
                             </li>
                             <hr />
                             <li className="nav-item">

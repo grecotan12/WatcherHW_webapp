@@ -71,3 +71,78 @@ body {
     50% { color: green; }
     100% { color: blue; }
  }
+
+ .cpu-animation {
+   width: 384px;
+   height: 512px;
+   background-image: url("./images/cpu_animation/cpu_01.png"); /* replace with your actual file path */
+   background-repeat: no-repeat;
+   animation: playCpu 1.5s ease-in-out infinite;
+   filter: drop-shadow(30px 10px 4px #909090);
+ }
+
+ @keyframes playCpu {
+   0% {
+      background-image: url('./images/cpu_animation/cpu_01.png');
+   }
+   15% {
+      background-image: url('./images/cpu_animation/cpu_02.png');
+   }
+   30% {
+      background-image: url('./images/cpu_animation/cpu_03.png');
+   }
+   45% {
+      background-image: url('./images/cpu_animation/cpu_04.png');
+   }
+   60% {
+      background-image: url('./images/cpu_animation/cpu_05.png');
+   }
+   75% {
+      background-image: url('./images/cpu_animation/cpu_06.png');
+   }
+   90% {
+      background-image: url('./images/cpu_animation/cpu_07.png');
+   }
+   100% {
+      background-image: url('./images/cpu_animation/cpu_08.png');
+   }
+ }
+
+ .ram-animation {
+   width: 341px;
+   height: 341px;
+   background-image: url("./images/ram_animation/00_ram.png"); /* replace with your actual file path */
+   background-repeat: no-repeat;
+   animation: playRam 1.5s ease-in-out infinite;
+   filter: drop-shadow(30px 10px 4px #909090);
+ }
+
+ @keyframes playRam {
+   0% {
+      background-image: url("./images/ram_animation/00_ram.png"); 
+   }
+   10% {
+      background-image: url("./images/ram_animation/01_ram.png"); 
+   }
+   20% {
+      background-image: url("./images/ram_animation/02_ram.png"); 
+   }
+   30% {
+      background-image: url("./images/ram_animation/03_ram.png"); 
+   }
+   40% {
+      background-image: url("./images/ram_animation/04_ram.png"); 
+   }
+   50% {
+      background-image: url("./images/ram_animation/05_ram.png"); 
+   }
+   70% {
+      background-image: url("./images/ram_animation/06_ram.png"); 
+   }
+   90% {
+      background-image: url("./images/ram_animation/07_ram.png"); 
+   }
+   100% {
+      background-image: url("./images/ram_animation/08_ram.png"); 
+   }
+ }

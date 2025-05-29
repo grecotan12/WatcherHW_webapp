@@ -24,8 +24,7 @@ public class GetHardwareService {
                 output += line + " ";
             }
             int exitCode = process.waitFor();
-            System.out.println(output);
-            System.out.println("Python exited with code: " + exitCode);
+ 
             return output;
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
