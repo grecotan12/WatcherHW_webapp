@@ -1,0 +1,73 @@
+.thenav {
+    box-shadow: 0 30px 20px -20px black;
+    padding: 10px;
+    background-color: #129990;
+    color: #FFFBDE;
+}
+
+
+body {
+    background-color: #FFFBDE;
+}
+
+
+.navbar-toggler {
+    border: 2px solid #FFFBDE;
+}
+.navbar-toggler:focus,
+.navbar-toggler:active,
+.navbar-toggler-icon:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.navbar-toggler:hover {
+    border: 2px solid #90D1CA;
+}
+
+.nav-brand {
+  font-family: "Smooch Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.table-striped>tbody>tr:nth-child(even)>td, 
+.table-striped>tbody>tr:nth-child(even)>th {
+   background-color: #90D1CA;
+   color: #FFFBDE;
+ }
+
+.table-striped>tbody>tr:nth-child(odd)>td, 
+.table-striped>tbody>tr:nth-child(odd)>th {
+   background-color: #129990;
+   color: #FFFBDE;
+ }
+
+ .table-striped {
+    font-family: "Smooch Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 1.5rem;
+ }
+
+ .os-img {
+    filter: drop-shadow(30px 10px 4px #909090);
+ }
+
+ .table-striped tr td {
+    padding: 1rem;
+ }
+
+ .table-striped tr .changing_output {
+    animation: core_color 2s infinite;
+    font-weight: 800;
+    font-size: 2rem;
+ }
+
+ @keyframes core_color {
+    0% { color: red; }
+    50% { color: green; }
+    100% { color: blue; }
+ }
