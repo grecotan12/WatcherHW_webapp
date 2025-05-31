@@ -30,7 +30,7 @@ export const SystemNav: React.FC<{ system_name: string | undefined, node_name: s
                             </li>
                             <hr />
                             <li className="nav-item">
-                                <a className="nav-link" href="#">Disk Performance</a>
+                                <NavLink className="nav-link"  to="/disk">Disk Performance</NavLink>
                             </li>
                             <hr />
                             <li className="nav-item">

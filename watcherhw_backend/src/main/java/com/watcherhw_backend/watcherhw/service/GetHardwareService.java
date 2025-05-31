@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 public class GetHardwareService {
     public String getHw(String infoType) {
         try {
-            String pythonScriptPath = "./python_dependencies/hw-test.py";
+            String pythonScriptPath = "./watcherhw_backend/src/main/resources/python_scripts/hw-test.py";
 
             String [] cmd = {"python", pythonScriptPath, infoType};
 

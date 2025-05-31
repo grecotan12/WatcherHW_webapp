@@ -44,7 +44,7 @@ body {
    color: #FFFBDE;
  }
 
- .table-striped {
+ .table-striped, .disk-note {
     font-family: "Smooch Sans", sans-serif;
     font-optical-sizing: auto;
     font-weight: 600;
@@ -146,3 +146,71 @@ body {
       background-image: url("./images/ram_animation/08_ram.png"); 
    }
  }
+
+.disk-animation {
+   width: 148px;
+   height: 142px;
+   background-image: url("./images/disk_animation/00_thedisk.png"); /* replace with your actual file path */
+   background-repeat: no-repeat;
+   animation: playDisk 1s ease-in-out infinite;
+   filter: drop-shadow(30px 10px 4px #909090);
+ }
+
+
+@keyframes playDisk {
+   0% {
+      background-image: url("./images/disk_animation/00_thedisk.png");
+   }
+   50% {
+      background-image: url("./images/disk_animation/01_thedisk.png");
+   }
+   100% {
+      background-image: url("./images/disk_animation/02_thedisk.png");
+   }
+}
+
+
+.disk-note {
+   font-weight: 800;
+   font-size: 2rem;
+}
+
+.accordion-button:not(.collapsed) {
+   background: #129990;
+   color: #FFFBDE;
+   font-family: "Smooch Sans", sans-serif;
+   font-optical-sizing: auto;
+   font-weight: 600;
+   font-style: normal;
+   font-size: 2rem;
+}
+
+.accordion-button.collapsed {
+   background: #90D1CA;
+   color: black;
+   font-family: "Smooch Sans", sans-serif;
+   font-optical-sizing: auto;
+   font-weight: 600;
+   font-style: normal;
+   font-size: 2rem;
+}
+
+.accordion-item {
+   background: #FFFBDE;
+   font-family: "Smooch Sans", sans-serif;
+   font-optical-sizing: auto;
+   font-weight: 600;
+   font-size: 2rem;
+}
+
+.accordion-button.collapsed::after {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+}
+
+.accordion-item button {
+   background-color: #129990;
+}
+
+.accordion-item button:hover {
+   background-color: #90D1CA;
+}

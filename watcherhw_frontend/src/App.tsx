@@ -6,12 +6,16 @@ import SystemInfoModel from './models/SystemInfoModel';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import { CpuInfo } from './hwinfo/CpuInfo';
 import CpuInfoModel from './models/CpuInfoModel';
-import { OsImage } from './utils/OsImage';
 import { MemoryInfo } from './hwinfo/MemoryInfo';
+import MemoryInfoModel from './models/MemoryInfoModel';
+import { DiskInfo } from './hwinfo/DiskInfo';
+import DiskInfoModel from './models/DiskInfoModel';
 
 export const App = () => {
   const [basicInfo, setBasicInfo] = useState<SystemInfoModel>();
   const [theCpuInfo, setTheCpuInfo] = useState<CpuInfoModel>();
+  const [memoryInfo, setMemoryInfo] = useState<MemoryInfoModel>();
+  const [diskInfo, setDiskInfo] = useState<DiskInfoModel>();
 
   useEffect(() => {
     const fetchHwInfo = async () => {
@@ -69,6 +73,67 @@ export const App = () => {
     return () => clearInterval(interval); 
   }, []);
 
+  useEffect(() => {
+    const fetchMemoryInfo = async () => {
+      const url: string = "http://localhost:8080/api/gethw?infoType=memory";
+
+      const response = await fetch(url);
+
+      const responseJson = await response.json();
+
+      const loadedMemoryInfo: MemoryInfoModel = {
+        vmemory_total: responseJson.vmemory_total,
+        vmemory_available: responseJson.vmemory_available,
+        vmemory_used: responseJson.vmemory_used,
+        vmemory_percentage: responseJson.vmemory_percentage,
+        swap_total: responseJson.swap_total,
+        swap_free: responseJson.swap_free,
+        swap_used: responseJson.swap_used,
+        swap_percentage: responseJson.swap_percentage
+      }
+
+      setMemoryInfo(loadedMemoryInfo);
+    }
+    const interval = setInterval(() => {
+      fetchMemoryInfo().catch((error: any) => {
+        console.log(error.message);
+      })
+    }, 1000);
+
+    return () => clearInterval(interval); 
+  }, []);
+
+  useEffect(() => {
+    const fetchDiskInfo = async () => {
+      const url: string = "http://localhost:8080/api/gethw?infoType=disk";
+
+      const response = await fetch(url);
+
+      const responseJson = await response.json();
+
+      const partitions: any[] = [];
+
+      for (const [key, value] of Object.entries(responseJson)) {
+          if (key === "disk_io_read" || key === "disk_io_write") {
+            continue;
+          } 
+          partitions.push(value);
+      }
+
+      const loadedDiskInfo: DiskInfoModel = {
+        mountpoints: partitions,
+        disk_io_read: responseJson.disk_io_read,
+        disk_io_write: responseJson.disk_io_write,
+      }
+
+      setDiskInfo(loadedDiskInfo);
+    }
+    fetchDiskInfo().catch((error: any) => {
+      console.log(error.message);
+    })
+ 
+  }, []);
+
   return(
     <div className='d-flex flex-column min-vh-100'>
       <SystemNav system_name={basicInfo?.system_name} node_name={basicInfo?.node_name}/>
@@ -84,7 +149,10 @@ export const App = () => {
             <CpuInfo theCpuInfo={theCpuInfo} />
           </Route>
           <Route path="/ram">
-            <MemoryInfo />
+            <MemoryInfo memoryInfo={memoryInfo} />
+          </Route>
+          <Route path="/disk">
+            <DiskInfo diskInfo={diskInfo} />
           </Route>
         </Switch>
       </div>
