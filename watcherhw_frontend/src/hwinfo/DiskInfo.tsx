@@ -1,10 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import DiskInfoModel from "../models/DiskInfoModel"
-import { Spinner } from "../utils/Spinner";
-import { clear } from "console";
 
 export const DiskInfo = () => {
-    const [isLoading, setIsLoading] = useState(false);
     const [speedInfo, setSpeedInfo]: any[] = useState([]);
 
     const [diskInfo, setDiskInfo] = useState<DiskInfoModel>();
@@ -46,12 +43,9 @@ export const DiskInfo = () => {
     const handleInput = async (event: any) => {
         event.preventDefault();
         const loadedPaths: any[] = [];
-
         const theLength: any = diskInfo?.mountpoints.length;
         for (let i = 0; i < theLength; i++) {
-            setIsLoading(true);
             loadedPaths.push(event.target[i].value);
-            setIsLoading(false);
         }
         setThePath(loadedPaths);
     }
@@ -82,11 +76,13 @@ export const DiskInfo = () => {
             }
             setSpeedInfo(loadedSpeedInfo);
         }
+        fetchSpeed();
         const interval = setInterval(() => {
             fetchSpeed().catch((error: any) => console.log(error));
         }, 10000)
         return () => clearInterval(interval);
     }, [thePath]);
+
     return (
         <div className="container">
             <div className="container mt-5 mb-5 justify-content-center align-items-center disk-animation"></div>
@@ -158,10 +154,7 @@ export const DiskInfo = () => {
                                     <small id={`pathHelp${count}`} className="form-text text-muted mt-2 mb-2">Please enter path from {mp.mountpoint} where you have permission to an empty folder</small>
                                 </div>
                             ))}
-                            {isLoading ? <Spinner />
-                                :
-                                <button type="submit" className="btn btn-primary mt-2 mb-2">Submit</button>
-                            }
+                            <button type="submit" className="btn btn-primary mt-2 mb-2">Submit</button>
                         </div>
                     </form>
                 </div>
