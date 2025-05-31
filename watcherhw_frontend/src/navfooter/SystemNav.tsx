@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom"
 
-export const SystemNav: React.FC<{ system_name: string | undefined, node_name: string | undefined}> = (props) => {
+export const SystemNav = () => {
     return (
         // <a href="https://www.flaticon.com/free-icons/big-data" title="big data icons">Big data icons created by xnimrodx - Flaticon</a>
         <nav className="navbar thenav">

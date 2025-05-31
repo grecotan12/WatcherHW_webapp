@@ -8,11 +8,10 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class GetHardwareService {
-    public String getHw(String infoType) {
+    public String runScript(String script, String argument) {
         try {
-            String pythonScriptPath = "./watcherhw_backend/src/main/resources/python_scripts/hw-test.py";
 
-            String [] cmd = {"python", pythonScriptPath, infoType};
+            String [] cmd = {"python", script, argument};
 
             Process process = Runtime.getRuntime().exec(cmd);
 

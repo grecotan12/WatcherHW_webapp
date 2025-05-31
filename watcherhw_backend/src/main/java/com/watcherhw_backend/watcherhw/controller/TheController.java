@@ -23,6 +23,12 @@ public class TheController {
     @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/gethw")
     public String getHw(@RequestParam String infoType) {
-       return getHardwareService.getHw(infoType);
+       return getHardwareService.runScript("./watcherhw_backend/src/main/resources/python_scripts/hw-test.py", infoType);
+    }
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @GetMapping("/getDiskSpeed")
+    public String getDiskSpeed(@RequestParam String absolutePath) {
+        return getHardwareService.runScript("./watcherhw_backend/src/main/resources/python_scripts/disk_speed_lib/diskspeed.py", absolutePath);
     }
 }

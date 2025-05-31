@@ -1,43 +1,69 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SystemInfoModel from "../models/SystemInfoModel";
 import { Spinner } from "../utils/Spinner";
 import { OsImage } from "../utils/OsImage";
 
-export const BasicInfo: React.FC<{ basicInfo: SystemInfoModel | undefined }> = (props) => {
-    if (props.basicInfo == null) {
+export const BasicInfo = () => {
+    const [basicInfo, setBasicInfo] = useState<SystemInfoModel>();
+
+    useEffect(() => {
+        const fetchHwInfo = async () => {
+            const url: string = "http://localhost:8080/api/gethw?infoType=basic";
+
+            const response = await fetch(url);
+
+            const responseJson = await response.json();
+
+            const loadedSystemInfo: SystemInfoModel = {
+                system_name: responseJson.system_name,
+                node_name: responseJson.node_name,
+                release: responseJson.release,
+                version: responseJson.version,
+                machine: responseJson.machine,
+                boot_time: responseJson.boot_time
+            }
+            setBasicInfo(loadedSystemInfo);
+        }
+        fetchHwInfo().catch((error: any) => {
+            console.log(error.message);
+        })
+    }, []);
+
+    if (basicInfo == null) {
         return (
             <Spinner />
         );
     }
+
     return (
         <div className="container mt-5 mb-5">
-            <OsImage system_name={props.basicInfo?.system_name} />
+            <OsImage system_name={basicInfo.system_name} />
             <div className="container d-flex justify-content-center mt-5 mb-5">
                 <table className="table table-striped">
                     <tbody>
                         <tr>
                             <td>System Name</td>
-                            <td>{props.basicInfo?.system_name}</td>
+                            <td>{basicInfo.system_name}</td>
                         </tr>
                         <tr>
                             <td>Node Name</td>
-                            <td>{props.basicInfo?.node_name}</td>
+                            <td>{basicInfo.node_name}</td>
                         </tr>
                         <tr>
                             <td>Release</td>
-                            <td>{props.basicInfo?.release}</td>
+                            <td>{basicInfo.release}</td>
                         </tr>
                         <tr>
                             <td>Version</td>
-                            <td>{props.basicInfo?.version}</td>
+                            <td>{basicInfo.version}</td>
                         </tr>
                         <tr>
                             <td>Machine</td>
-                            <td>{props.basicInfo?.machine}</td>
+                            <td>{basicInfo.machine}</td>
                         </tr>
                         <tr>
                             <td>Boot Time</td>
-                            <td>{props.basicInfo?.boot_time}</td>
+                            <td>{basicInfo.boot_time}</td>
                         </tr>
                     </tbody>
                 </table>

@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+import json
 import time, os, sys
 
 def writetofile(filename,mysizeMB):
@@ -41,30 +42,26 @@ def diskspeedmeasure(dirname):
 
 
 if __name__ == "__main__":
-
-	print("Let's go")
-
+	speedInfo = dict()
 	if len(sys.argv) >= 2:
 		dirname = sys.argv[1]
 		if not os.path.isdir(dirname): 
-			print ("Specified argument is not a directory. Bailing out")
+			speedInfo["speedInfo"] = "Can't find directory"
+			print(json.dumps(speedInfo))
 			sys.exit(1)
-	else:
-		# no argument, so use current working directory
-		dirname = os.getcwd()
-		print("Using current working directory")
+	# else:
+	# 	# no argument, so use current working directory
+	# 	dirname = os.getcwd()
+	# 	print("Using current working directory")
 
-	try:
-		speed = diskspeedmeasure(dirname)
-		print("Disk writing speed: %.2f Mbytes per second" % speed)
-	except(IOError, e):
-		#print "IOError:", e
-		if e.errno == 13:
-			print("Could not create test file. Check that you have write rights to directory", dirname)
-	except:
-		print("Something else went wrong")
-		raise
-
-	print("Done")
-
+		try:
+			speed = diskspeedmeasure(dirname)
+			speedInfo["speedInfo"] = "%.2f Mbytes/sec" % speed
+			print(json.dumps(speedInfo))
+		except IOError:
+			speedInfo["speedInfo"] = f"Check that you have write rights to directory {dirname}"
+			print(json.dumps(speedInfo))
+		except:
+			speedInfo["speedInfo"] = "Something went wrong"
+			print(json.dumps(speedInfo))
 
