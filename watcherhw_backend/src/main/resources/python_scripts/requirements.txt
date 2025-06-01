@@ -1,0 +1,4 @@
+psutil
+lib-platform
+py-cpuinfo
+pywin32
