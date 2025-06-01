@@ -31,4 +31,10 @@ public class TheController {
     public String getDiskSpeed(@RequestParam String absolutePath) {
         return getHardwareService.runScript("./watcherhw_backend/src/main/resources/python_scripts/disk_speed_lib/diskspeed.py", absolutePath);
     }
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @GetMapping("/getCpuTemp")
+    public String getCPUTemp() {
+        return getHardwareService.runScript("./watcherhw_backend/src/main/resources/python_scripts/run_admin.py", "");
+    }
 }
