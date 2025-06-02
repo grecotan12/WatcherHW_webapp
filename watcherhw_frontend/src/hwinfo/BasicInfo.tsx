@@ -5,33 +5,54 @@ import { OsImage } from "../utils/OsImage";
 
 export const BasicInfo = () => {
     const [basicInfo, setBasicInfo] = useState<SystemInfoModel>();
+    const [islibsLoaded, setIsLibsLoaded] = useState(true);
 
     useEffect(() => {
-        const fetchHwInfo = async () => {
-            const url: string = "http://localhost:8080/api/gethw?infoType=basic";
+        const checkPythonLibs = async () => {
+            const url: string = "http://localhost:8080/api/checkLibs";
+            
+            const res = await fetch(url);
 
-            const response = await fetch(url);
+            const resJson = await res.json();
 
-            const responseJson = await response.json();
+            console.log(resJson);
 
-            const loadedSystemInfo: SystemInfoModel = {
-                system_name: responseJson.system_name,
-                node_name: responseJson.node_name,
-                release: responseJson.release,
-                version: responseJson.version,
-                machine: responseJson.machine,
-                boot_time: responseJson.boot_time
-            }
-            setBasicInfo(loadedSystemInfo);
+            setIsLibsLoaded(false);
         }
-        fetchHwInfo().catch((error: any) => {
-            console.log(error.message);
-        })
+        checkPythonLibs().catch((error : any) => console.log(error.message));
     }, []);
+
+    useEffect(() => {
+        if (!islibsLoaded) {
+            const fetchHwInfo = async () => {
+                const url: string = "http://localhost:8080/api/gethw?infoType=basic";
+    
+                const response = await fetch(url);
+    
+                const responseJson = await response.json();
+    
+                const loadedSystemInfo: SystemInfoModel = {
+                    system_name: responseJson.system_name,
+                    node_name: responseJson.node_name,
+                    release: responseJson.release,
+                    version: responseJson.version,
+                    machine: responseJson.machine,
+                    boot_time: responseJson.boot_time
+                }
+                setBasicInfo(loadedSystemInfo);
+            }
+            fetchHwInfo().catch((error: any) => {
+                console.log(error.message);
+            })
+        }
+    }, [islibsLoaded]);
 
     if (basicInfo == null) {
         return (
-            <Spinner />
+            <div>
+                <Spinner />
+                <div className="text-center disk-note">Loading libraries and data</div>
+            </div>
         );
     }
 

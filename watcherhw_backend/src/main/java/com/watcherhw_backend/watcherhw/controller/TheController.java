@@ -37,4 +37,10 @@ public class TheController {
     public String getCPUTemp() {
         return getHardwareService.runScript("./watcherhw_backend/src/main/resources/python_scripts/run_admin.py", "");
     }
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @GetMapping("/checkLibs")
+    public String checkLibs() {
+        return getHardwareService.runScript("./watcherhw_backend/src/main/resources/python_scripts/check_libs.py", "");
+    }
 }
