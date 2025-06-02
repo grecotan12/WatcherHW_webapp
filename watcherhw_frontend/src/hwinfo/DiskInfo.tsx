@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import DiskInfoModel from "../models/DiskInfoModel"
+import { Spinner } from "../utils/Spinner";
 
 export const DiskInfo = () => {
     const [speedInfo, setSpeedInfo]: any[] = useState([]);
@@ -9,36 +10,55 @@ export const DiskInfo = () => {
     const inputElement = useRef(null);
     const [thePath, setThePath]: any[] = useState([]);
 
+    const [islibsLoaded, setIsLibsLoaded] = useState(true);
+
     useEffect(() => {
-        const fetchDiskInfo = async () => {
-            const url: string = "http://localhost:8080/api/gethw?infoType=disk";
+        const checkPythonLibs = async () => {
+            const url: string = "http://localhost:8080/api/checkLibs";
 
-            const response = await fetch(url);
+            const res = await fetch(url);
 
-            const responseJson = await response.json();
+            const resJson = await res.json();
 
-            const partitions: any[] = [];
+            console.log(resJson);
 
-            for (const [key, value] of Object.entries(responseJson)) {
-                if (key === "disk_io_read" || key === "disk_io_write") {
-                    continue;
-                }
-                partitions.push(value);
-            }
-
-            const loadedDiskInfo: DiskInfoModel = {
-                mountpoints: partitions,
-                disk_io_read: responseJson.disk_io_read,
-                disk_io_write: responseJson.disk_io_write,
-            }
-
-            setDiskInfo(loadedDiskInfo);
+            setIsLibsLoaded(false);
         }
-        fetchDiskInfo().catch((error: any) => {
-            console.log(error.message);
-        })
-
+        checkPythonLibs().catch((error: any) => console.log(error.message));
     }, []);
+
+    useEffect(() => {
+        if (!islibsLoaded) {
+            const fetchDiskInfo = async () => {
+                const url: string = "http://localhost:8080/api/gethw?infoType=disk";
+
+                const response = await fetch(url);
+
+                const responseJson = await response.json();
+
+                const partitions: any[] = [];
+
+                for (const [key, value] of Object.entries(responseJson)) {
+                    if (key === "disk_io_read" || key === "disk_io_write") {
+                        continue;
+                    }
+                    partitions.push(value);
+                }
+
+                const loadedDiskInfo: DiskInfoModel = {
+                    mountpoints: partitions,
+                    disk_io_read: responseJson.disk_io_read,
+                    disk_io_write: responseJson.disk_io_write,
+                }
+
+                setDiskInfo(loadedDiskInfo);
+            }
+            fetchDiskInfo().catch((error: any) => {
+                console.log(error.message);
+            })
+        }
+
+    }, [islibsLoaded]);
 
     const handleInput = async (event: any) => {
         event.preventDefault();
@@ -57,15 +77,15 @@ export const DiskInfo = () => {
                 try {
                     const pathEncode: string = encodeURIComponent(thePath[i]);
                     const url: string = `http://localhost:8080/api/getDiskSpeed?absolutePath=${pathEncode}`;
-    
+
                     const response = await fetch(url);
                     const responseJson = await response.json();
-    
+
                     const theSpeedInfo = {
                         mountpoint: diskInfo?.mountpoints[i].mountpoint,
                         speed: responseJson.speedInfo,
                     }
-    
+
                     if (responseJson.speedInfo.includes('Mbytes')) {
                         document.getElementById(`pathInput${i}`)?.setAttribute("disabled", "true");
                     }
@@ -81,7 +101,16 @@ export const DiskInfo = () => {
             fetchSpeed().catch((error: any) => console.log(error));
         }, 10000)
         return () => clearInterval(interval);
-    }, [thePath]);
+    }, [thePath, diskInfo?.mountpoints]);
+
+    if (diskInfo == null) {
+        return (
+            <div>
+                <Spinner />
+                <div className="text-center disk-note">Loading libraries and data</div>
+            </div>
+        )
+    }
 
     return (
         <div className="container">

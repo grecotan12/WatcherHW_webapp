@@ -4,51 +4,86 @@ import { Spinner } from "../utils/Spinner";
 
 export const CpuInfo = () => {
     const [theCpuInfo, setTheCpuInfo] = useState<CpuInfoModel>();
-    
+    const [islibsLoaded, setIsLibsLoaded] = useState(true);
+
     useEffect(() => {
-        const fetchCpuInfo = async () => {
-            const url: string = "http://localhost:8080/api/gethw?infoType=cpu";
+        const checkPythonLibs = async () => {
+            const url: string = "http://localhost:8080/api/checkLibs";
+            
+            const res = await fetch(url);
 
-            const response = await fetch(url);
+            const resJson = await res.json();
 
-            const responseJson = await response.json();
+            console.log(resJson);
 
-            const cores: any[] = [];
-
-            for (const [key, value] of Object.entries(responseJson)) {
-                if (key.includes("core")) { cores.push(value); }
-            }
-
-            const loadedCpuInfo: CpuInfoModel = {
-                processor: responseJson.processor,
-                max_frequency: responseJson.max_frequency,
-                min_frequency: responseJson.min_frequency,
-                current_frequency: responseJson.current_frequency,
-                cores: cores
-            };
-
-            setTheCpuInfo(loadedCpuInfo);
+            setIsLibsLoaded(false);
         }
-        fetchCpuInfo().catch((error: any) => {
-            console.log(error.message);
-        })
-        const interval = setInterval(() => {
+        checkPythonLibs().catch((error : any) => console.log(error.message));
+    }, []);
+
+    useEffect(() => {
+        if (!islibsLoaded) {
+            const fetchCpuInfo = async () => {
+                const url: string = "http://localhost:8080/api/gethw?infoType=cpu";
+    
+                const response = await fetch(url);
+    
+                const responseJson = await response.json();
+    
+                const cores: any[] = [];
+    
+                for (const [key, value] of Object.entries(responseJson)) {
+                    if (key.includes("core")) { cores.push(value); }
+                }
+    
+                const loadedCpuInfo: CpuInfoModel = {
+                    processor: responseJson.processor,
+                    max_frequency: responseJson.max_frequency,
+                    min_frequency: responseJson.min_frequency,
+                    current_frequency: responseJson.current_frequency,
+                    cores: cores
+                };
+    
+                setTheCpuInfo(loadedCpuInfo);
+            }
             fetchCpuInfo().catch((error: any) => {
                 console.log(error.message);
             })
-        }, 10000);
+            const interval = setInterval(() => {
+                fetchCpuInfo().catch((error: any) => {
+                    console.log(error.message);
+                })
+            }, 10000);
+    
+            return () => clearInterval(interval);
+        }
+    }, [islibsLoaded]);
 
-        return () => clearInterval(interval);
-    }, []);
+
+    const fetchCpuTemps = async () => {
+        const url: string = "http://localhost:8080/api/getCpuTemp";
+
+        const res = await fetch(url);
+
+        const resJson = await res.json();
+
+        console.log(resJson);
+    }
 
     if (theCpuInfo == null) {
         return (
-            <Spinner />
+            <div>
+                <Spinner />
+                <div className="text-center disk-note">Loading libraries and data</div>
+            </div>
         );
     }
     return (
         <div className="container">
             <div className="container cpu-animation"></div>
+            <div className="text-center mb-5">
+                <button className="btn btn-primary getCpuTemps" onClick={fetchCpuTemps}>CPU Temps</button>
+            </div>
             <div className="container d-flex justify-content-center mb-5">
                 <table className="table table-striped">
                     <tbody>
