@@ -61,7 +61,37 @@ export const CpuInfo = () => {
 
 
     const fetchCpuTemps = async () => {
-        const url: string = "http://localhost:8080/api/getCpuTemp";
+        const url: string = "http://localhost:8080/api/monitorCpu?cpuInfoType=cpu_temps";
+
+        const res = await fetch(url);
+
+        const resJson = await res.json();
+
+        console.log(resJson);
+    }
+
+    const fetchCpuClocks = async () => {
+        const url: string = "http://localhost:8080/api/monitorCpu?cpuInfoType=cpu_clocks";
+
+        const res = await fetch(url);
+
+        const resJson = await res.json();
+
+        console.log(resJson);
+    }
+
+    const fetchCpuPowers = async () => {
+        const url: string = "http://localhost:8080/api/monitorCpu?cpuInfoType=cpu_powers";
+
+        const res = await fetch(url);
+
+        const resJson = await res.json();
+
+        console.log(resJson);
+    }
+
+    const fetchCpuVols = async () => {
+        const url: string = "http://localhost:8080/api/monitorCpu?cpuInfoType=cpu_vols";
 
         const res = await fetch(url);
 
@@ -81,8 +111,11 @@ export const CpuInfo = () => {
     return (
         <div className="container">
             <div className="container cpu-animation"></div>
-            <div className="text-center mb-5">
+            <div className="container d-flex justify-content-around mb-5">
                 <button className="btn btn-primary getCpuTemps" onClick={fetchCpuTemps}>CPU Temps</button>
+                <button className="btn btn-primary getCpuTemps" onClick={fetchCpuClocks}>CPU Clocks</button>
+                <button className="btn btn-primary getCpuTemps" onClick={fetchCpuPowers}>CPU Powers</button>
+                <button className="btn btn-primary getCpuTemps" onClick={fetchCpuVols}>CPU Voltages</button>
             </div>
             <div className="container d-flex justify-content-center mb-5">
                 <table className="table table-striped">

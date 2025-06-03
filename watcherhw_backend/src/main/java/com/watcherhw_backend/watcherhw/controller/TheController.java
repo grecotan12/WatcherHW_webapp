@@ -33,9 +33,9 @@ public class TheController {
     }
 
     @CrossOrigin(origins = "http://localhost:3000")
-    @GetMapping("/getCpuTemp")
-    public String getCPUTemp() {
-        return getHardwareService.runScript("./watcherhw_backend/src/main/resources/python_scripts/run_admin.py", "");
+    @GetMapping("/monitorCpu")
+    public String monitorCpu(@RequestParam String cpuInfoType) {
+        return getHardwareService.runScript("./watcherhw_backend/src/main/resources/python_scripts/run_admin.py",  cpuInfoType);
     }
 
     @CrossOrigin(origins = "http://localhost:3000")

@@ -22,5 +22,7 @@ if __name__ == "__main__":
         install_module('py-cpuinfo')
     if check_module('win32com') == False:
         install_module('pywin32')
+    if check_module('PyLibreHardwareMonitor') == False:
+        install_module('pywin32')
 
     print(json.dumps("Done"))
