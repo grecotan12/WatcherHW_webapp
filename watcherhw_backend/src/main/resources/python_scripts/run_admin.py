@@ -18,6 +18,9 @@ if not admin.isUserAdmin():
         if sys.argv[1] == 'cpu_vols':
             print(json.dumps("Getting cpu details..."))
             admin.runAsAdmin(f"python -i ./watcherhw_backend/src/main/resources/python_scripts/get-cpudetails.py -i vol") # Run command as root
+        if sys.argv[1] == 'gpu_power':
+            print(json.dumps("Getting GPU Details..."))
+            admin.runAsAdmin(f"python -i ./watcherhw_backend/src/main/resources/python_scripts/get-gpudetails.py")
     
 else:
     print(json.dumps("Now you are root!"))

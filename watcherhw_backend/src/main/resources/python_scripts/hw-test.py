@@ -2,6 +2,8 @@
 ############### Wrote by Tan Nguyen
 ############### Preference to
 ############### https://thepythoncode.com/article/get-hardware-system-information-python
+import re
+import subprocess
 import psutil
 import platform
 import json 
@@ -9,6 +11,8 @@ from datetime import datetime
 import sys
 import warnings
 from cpuinfo import get_cpu_info
+import os
+
 
 if len(sys.argv) == 2:
     def get_size(bytes, suffix="B"):
@@ -124,8 +128,33 @@ if len(sys.argv) == 2:
         sys.exit()
 
     if sys.argv[1] == "gpu":
-        gpu_list_info = dict()
-        print(json.dumps(gpu_list_info))
+        gpu_info = dict()
+        if not os.path.exists('help.txt'):
+            subprocess.run(["dxdiag", "/t", "./watcherhw_backend/src/main/resources/python_scripts/help.txt"])
+
+        try:
+            with open('./watcherhw_backend/src/main/resources/python_scripts/help.txt', 'r') as file:
+                for line in file:
+                    if "Card name: " in line:
+                        gpu_info["name"] = line.strip().split(":")[1].strip()
+                    if "Chip type: " in line:
+                        gpu_info["chip_type"] = line.strip().split(":")[1].strip()
+                    if "Device Status: " in line:
+                        gpu_info["dev_status"] = line.strip().split(":")[1].strip()
+                    if "Device Problem Code: " in line:
+                        gpu_info["problem_code"] = line.strip().split(":")[1].strip()
+                    if "Driver Problem Code: " in line:
+                        gpu_info["driver_code"] = line.strip().split(":")[1].strip()
+                    if "Display Memory: " in line:
+                        gpu_info["display_mem"] = line.strip().split(":")[1].strip()
+                    if "Dedicated Memory: " in line:
+                        gpu_info["ded_mem"] = line.strip().split(":")[1].strip()
+                    if "Shared Memory: " in line:
+                        gpu_info["shared_mem"] = line.strip().split(":")[1].strip()
+        except FileNotFoundError:
+            print(None)  # Return None if the file does not exist
+
+        print(json.dumps(gpu_info))
         sys.exit()
 
 else:

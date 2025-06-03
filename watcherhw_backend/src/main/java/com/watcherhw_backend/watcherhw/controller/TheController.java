@@ -39,6 +39,12 @@ public class TheController {
     }
 
     @CrossOrigin(origins = "http://localhost:3000")
+    @GetMapping("/getGpuPowerLoadsTemp")
+    public String getGpuPowerLoadsTemp() {
+        return getHardwareService.runScript("./watcherhw_backend/src/main/resources/python_scripts/run_admin.py",  "gpu_power");
+    }
+
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/checkLibs")
     public String checkLibs() {
         return getHardwareService.runScript("./watcherhw_backend/src/main/resources/python_scripts/check_libs.py", "");
