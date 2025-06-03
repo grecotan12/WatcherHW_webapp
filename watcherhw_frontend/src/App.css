@@ -26,11 +26,16 @@ body {
    border: 2px solid #90D1CA;
 }
 
-.nav-brand {
+.nav-brand, .network-title {
    font-family: "Smooch Sans", sans-serif;
    font-optical-sizing: auto;
    font-weight: 400;
    font-style: normal;
+}
+
+.network-title {
+   font-weight: 800;
+   font-size: 3rem;
 }
 
 .table-striped>tbody>tr:nth-child(even)>td,

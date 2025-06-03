@@ -7,6 +7,7 @@ import { CpuInfo } from './hwinfo/CpuInfo';
 import { MemoryInfo } from './hwinfo/MemoryInfo';
 import { DiskInfo } from './hwinfo/DiskInfo';
 import { GpuInfo } from './hwinfo/GpuInfo';
+import { NetworkInfo } from './hwinfo/NetworkInfo';
 
 export const App = () => {
 
@@ -32,6 +33,9 @@ export const App = () => {
           </Route>
           <Route path="/gpu">
             <GpuInfo/>
+          </Route>
+          <Route path="/network">
+            <NetworkInfo/>
           </Route>
         </Switch>
       </div>

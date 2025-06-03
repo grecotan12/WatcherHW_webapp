@@ -117,7 +117,8 @@ if len(sys.argv) == 2:
                     the_list = info[0].split(":")
                     if len(the_list) == 2:
                         key = the_list[0].replace(".", "")
-                        network_info[key.strip()] = the_list[1].strip()
+                        if key.strip() != "" and the_list[1].strip() != "":
+                            network_info[key.strip()] = the_list[1].strip()
         print(json.dumps(network_info))
         sys.exit()
 
