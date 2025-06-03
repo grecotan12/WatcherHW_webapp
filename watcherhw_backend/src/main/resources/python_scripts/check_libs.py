@@ -23,6 +23,6 @@ if __name__ == "__main__":
     if check_module('win32com') == False:
         install_module('pywin32')
     if check_module('PyLibreHardwareMonitor') == False:
-        install_module('pywin32')
+        install_module('PyLibreHardwareMonitor')
 
     print(json.dumps("Done"))
