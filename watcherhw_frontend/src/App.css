@@ -1,169 +1,199 @@
 .thenav {
-    box-shadow: 0 30px 20px -20px black;
-    padding: 10px;
-    background-color: #129990;
-    color: #FFFBDE;
+   box-shadow: 0 30px 20px -20px black;
+   padding: 10px;
+   background-color: #129990;
+   color: #FFFBDE;
 }
 
 
 body {
-    background-color: #FFFBDE;
+   background-color: #FFFBDE;
 }
 
 
 .navbar-toggler {
-    border: 2px solid #FFFBDE;
+   border: 2px solid #FFFBDE;
 }
+
 .navbar-toggler:focus,
 .navbar-toggler:active,
 .navbar-toggler-icon:focus {
-    outline: none;
-    box-shadow: none;
+   outline: none;
+   box-shadow: none;
 }
 
 .navbar-toggler:hover {
-    border: 2px solid #90D1CA;
+   border: 2px solid #90D1CA;
 }
 
 .nav-brand {
-  font-family: "Smooch Sans", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 400;
-  font-style: normal;
+   font-family: "Smooch Sans", sans-serif;
+   font-optical-sizing: auto;
+   font-weight: 400;
+   font-style: normal;
 }
 
-.table-striped>tbody>tr:nth-child(even)>td, 
+.table-striped>tbody>tr:nth-child(even)>td,
 .table-striped>tbody>tr:nth-child(even)>th {
    background-color: #90D1CA;
    color: #FFFBDE;
- }
+}
 
-.table-striped>tbody>tr:nth-child(odd)>td, 
+.table-striped>tbody>tr:nth-child(odd)>td,
 .table-striped>tbody>tr:nth-child(odd)>th {
    background-color: #129990;
    color: #FFFBDE;
- }
+}
 
- .table-striped, .disk-note {
-    font-family: "Smooch Sans", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 600;
-    font-style: normal;
-    font-size: 1.5rem;
- }
+.table-striped,
+.disk-note {
+   font-family: "Smooch Sans", sans-serif;
+   font-optical-sizing: auto;
+   font-weight: 600;
+   font-style: normal;
+   font-size: 1.5rem;
+}
 
- .os-img {
-    filter: drop-shadow(30px 10px 4px #909090);
- }
+.os-img {
+   filter: drop-shadow(30px 10px 4px #909090);
+}
 
- .table-striped tr td {
-    padding: 1rem;
- }
+.table-striped tr td {
+   padding: 1rem;
+}
 
- .table-striped tr .changing_output {
-    animation: core_color 2s infinite;
-    font-weight: 800;
-    font-size: 2rem;
- }
+.table-striped tr .changing_output {
+   animation: core_color 2s infinite;
+   font-weight: 800;
+   font-size: 2rem;
+}
 
- @keyframes core_color {
-    0% { color: red; }
-    50% { color: green; }
-    100% { color: blue; }
- }
+@keyframes core_color {
+   0% {
+      color: red;
+   }
 
- .cpu-animation {
+   50% {
+      color: green;
+   }
+
+   100% {
+      color: blue;
+   }
+}
+
+.cpu-animation {
    width: 384px;
    height: 512px;
-   background-image: url("./images/cpu_animation/cpu_01.png"); /* replace with your actual file path */
+   background-image: url("./images/cpu_animation/cpu_01.png");
+   /* replace with your actual file path */
    background-repeat: no-repeat;
    animation: playCpu 1.5s ease-in-out infinite;
    filter: drop-shadow(30px 10px 4px #909090);
- }
+}
 
- @keyframes playCpu {
+@keyframes playCpu {
    0% {
       background-image: url('./images/cpu_animation/cpu_01.png');
    }
+
    15% {
       background-image: url('./images/cpu_animation/cpu_02.png');
    }
+
    30% {
       background-image: url('./images/cpu_animation/cpu_03.png');
    }
+
    45% {
       background-image: url('./images/cpu_animation/cpu_04.png');
    }
+
    60% {
       background-image: url('./images/cpu_animation/cpu_05.png');
    }
+
    75% {
       background-image: url('./images/cpu_animation/cpu_06.png');
    }
+
    90% {
       background-image: url('./images/cpu_animation/cpu_07.png');
    }
+
    100% {
       background-image: url('./images/cpu_animation/cpu_08.png');
    }
- }
+}
 
- .ram-animation {
+.ram-animation {
    width: 341px;
    height: 341px;
-   background-image: url("./images/ram_animation/00_ram.png"); /* replace with your actual file path */
+   background-image: url("./images/ram_animation/00_ram.png");
+   /* replace with your actual file path */
    background-repeat: no-repeat;
    animation: playRam 1.5s ease-in-out infinite;
    filter: drop-shadow(30px 10px 4px #909090);
- }
+}
 
- @keyframes playRam {
+@keyframes playRam {
    0% {
-      background-image: url("./images/ram_animation/00_ram.png"); 
+      background-image: url("./images/ram_animation/00_ram.png");
    }
+
    10% {
-      background-image: url("./images/ram_animation/01_ram.png"); 
+      background-image: url("./images/ram_animation/01_ram.png");
    }
+
    20% {
-      background-image: url("./images/ram_animation/02_ram.png"); 
+      background-image: url("./images/ram_animation/02_ram.png");
    }
+
    30% {
-      background-image: url("./images/ram_animation/03_ram.png"); 
+      background-image: url("./images/ram_animation/03_ram.png");
    }
+
    40% {
-      background-image: url("./images/ram_animation/04_ram.png"); 
+      background-image: url("./images/ram_animation/04_ram.png");
    }
+
    50% {
-      background-image: url("./images/ram_animation/05_ram.png"); 
+      background-image: url("./images/ram_animation/05_ram.png");
    }
+
    70% {
-      background-image: url("./images/ram_animation/06_ram.png"); 
+      background-image: url("./images/ram_animation/06_ram.png");
    }
+
    90% {
-      background-image: url("./images/ram_animation/07_ram.png"); 
+      background-image: url("./images/ram_animation/07_ram.png");
    }
+
    100% {
-      background-image: url("./images/ram_animation/08_ram.png"); 
+      background-image: url("./images/ram_animation/08_ram.png");
    }
- }
+}
 
 .disk-animation {
    width: 148px;
    height: 142px;
-   background-image: url("./images/disk_animation/00_thedisk.png"); /* replace with your actual file path */
+   background-image: url("./images/disk_animation/00_thedisk.png");
+   /* replace with your actual file path */
    background-repeat: no-repeat;
    animation: playDisk 1s ease-in-out infinite;
    filter: drop-shadow(30px 10px 4px #909090);
- }
+}
 
 
 @keyframes playDisk {
    0% {
       background-image: url("./images/disk_animation/00_thedisk.png");
    }
+
    50% {
       background-image: url("./images/disk_animation/01_thedisk.png");
    }
+
    100% {
       background-image: url("./images/disk_animation/02_thedisk.png");
    }
@@ -195,7 +225,8 @@ body {
    font-size: 2rem;
 }
 
-.accordion-item, .getCpuTemps {
+.accordion-item,
+.runButton {
    background: #FFFBDE;
    font-family: "Smooch Sans", sans-serif;
    font-optical-sizing: auto;
@@ -204,14 +235,58 @@ body {
 }
 
 .accordion-button.collapsed::after {
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
 }
 
-.accordion-item button, .getCpuTemps {
+.accordion-item button,
+.runButton {
    background-color: #129990;
 }
 
-.accordion-item button:hover, .getCpuTemps:hover {
+.accordion-item button:hover,
+.runButton:hover {
    background-color: #90D1CA;
 }
 
+.gpu-animation {
+   width: 341px;
+   height: 341px;
+   background-image: url("./images/gpu_animation/00_gpu.png");
+   background-repeat: no-repeat;
+   animation: playGpu 3s ease-in-out infinite;
+   filter: drop-shadow(30px 10px 4px #909090);
+}
+
+@keyframes playGpu {
+   20% {
+      background-image: url("./images/gpu_animation/01_gpu.png");
+   }
+
+   40% {
+      background-image: url("./images/gpu_animation/02_gpu.png");
+   }
+
+   50% {
+      background-image: url("./images/gpu_animation/03_gpu.png");
+   }
+
+   60% {
+      background-image: url("./images/gpu_animation/04_gpu.png");
+   }
+
+   70% {
+      background-image: url("./images/gpu_animation/05_gpu.png");
+   }
+
+   80% {
+      background-image: url("./images/gpu_animation/06_gpu.png");
+   }
+
+   90% {
+      background-image: url("./images/gpu_animation/07_gpu.png");
+   }
+
+   100% {
+      background-image: url("./images/gpu_animation/08_gpu.png");
+   }
+}

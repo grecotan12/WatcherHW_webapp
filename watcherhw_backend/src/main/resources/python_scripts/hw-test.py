@@ -105,25 +105,19 @@ if len(sys.argv) == 2:
         sys.exit()
 
     if sys.argv[1] == "network":
-        if_addrs = psutil.net_if_addrs()
         network_info = dict()
-        for interface_name, interface_addresses in if_addrs.items():
-            interface_info = dict()
-            for address in interface_addresses:
-                interface_info["address_family"] = address.family
-                if str(address.family) == 'AddressFamily.AF_INET':
-                    interface_info["ip_address"] = address.address
-                    interface_info["netmask"] = address.netmask
-                    interface_info["broadcast_ip"] = address.broadcast
-                elif str(address.family) == 'AddressFamily.AF_PACKET':
-                    interface_info["mac_address"] = address.address
-                    interface_info["netmask"] = address.netmask
-                    interface_info["broadcast_ip"] = address.broadcast
-            network_info[interface_name] = interface_info
+        # Traverse the ipconfig information
+        data = subprocess.check_output(['ipconfig','/all']).decode('utf-8').split('\n')
 
-        net_io = psutil.net_io_counters()
-        network_info["netio_bytes_send"] = get_size(net_io.bytes_sent)
-        network_info["netio_bytes_receive"] = get_size(net_io.bytes_recv)
+        # Arrange the bytes data
+        for item in data:
+            info = item.split('\r')[:-1]
+            if len(info) == 1:
+                if info[0] != '':
+                    the_list = info[0].split(":")
+                    if len(the_list) == 2:
+                        key = the_list[0].replace(".", "")
+                        network_info[key.strip()] = the_list[1].strip()
         print(json.dumps(network_info))
         sys.exit()
 

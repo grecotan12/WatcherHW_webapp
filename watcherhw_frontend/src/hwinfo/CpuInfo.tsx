@@ -112,10 +112,10 @@ export const CpuInfo = () => {
         <div className="container">
             <div className="container cpu-animation"></div>
             <div className="container d-flex justify-content-around mb-5">
-                <button className="btn btn-primary getCpuTemps" onClick={fetchCpuTemps}>CPU Temps</button>
-                <button className="btn btn-primary getCpuTemps" onClick={fetchCpuClocks}>CPU Clocks</button>
-                <button className="btn btn-primary getCpuTemps" onClick={fetchCpuPowers}>CPU Powers</button>
-                <button className="btn btn-primary getCpuTemps" onClick={fetchCpuVols}>CPU Voltages</button>
+                <button className="btn btn-primary runButton" onClick={fetchCpuTemps}>CPU Temps</button>
+                <button className="btn btn-primary runButton" onClick={fetchCpuClocks}>CPU Clocks</button>
+                <button className="btn btn-primary runButton" onClick={fetchCpuPowers}>CPU Powers</button>
+                <button className="btn btn-primary runButton" onClick={fetchCpuVols}>CPU Voltages</button>
             </div>
             <div className="container d-flex justify-content-center mb-5">
                 <table className="table table-striped">

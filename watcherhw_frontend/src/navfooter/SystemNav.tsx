@@ -34,7 +34,7 @@ export const SystemNav = () => {
                             </li>
                             <hr />
                             <li className="nav-item">
-                                <a className="nav-link" href="#">GPU Performance</a>
+                                <NavLink className="nav-link" to="/gpu">GPU Performance</NavLink>
                             </li>
                             <hr />
                         </ul>

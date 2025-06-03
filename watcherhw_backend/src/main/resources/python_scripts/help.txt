@@ -1,7 +1,7 @@
 ------------------
 System Information
 ------------------
-      Time of this report: 6/2/2025, 22:33:32
+      Time of this report: 6/3/2025, 01:06:48
              Machine name: LAPTOP-6GJESGTN
                Machine Id: {D4969BDB-BB95-4E95-B047-3BA0FD1C44DD}
          Operating System: Windows 11 Home 64-bit (10.0, Build 26100) (26100.ge_release.240331-1435)
@@ -12,7 +12,7 @@ System Information
                 Processor: 12th Gen Intel(R) Core(TM) i5-1235U (12 CPUs), ~1.3GHz
                    Memory: 8192MB RAM
       Available OS Memory: 7916MB RAM
-                Page File: 17746MB used, 4506MB available
+                Page File: 15653MB used, 6598MB available
               Windows Dir: C:\Windows
           DirectX Version: DirectX 12
       DX Setup Parameters: Not found
@@ -399,7 +399,7 @@ PS/2 Devices
 Disk & DVD/CD-ROM Drives
 ------------------------
       Drive: C:
- Free Space: 299.8 GB
+ Free Space: 298.6 GB
 Total Space: 486.1 GB
 File System: NTFS
       Model: SAMSUNG MZAL8512HDLU-00BL2
@@ -1260,7 +1260,7 @@ Disabled Media Sources
 ---------------
 EVR Power Information
 ---------------
-Current Setting: {651288E5-A7ED-4076-A96B-6CC62D848FE1} (Balanced)
+Current Setting: {5C67A112-A4C9-483F-B4A7-1D473BECAFDC} (Quality) 
   Quality Flags: 2576
     Enabled:
     Force throttling

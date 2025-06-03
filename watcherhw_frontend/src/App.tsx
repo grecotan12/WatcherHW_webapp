@@ -6,6 +6,7 @@ import { Redirect, Route, Switch } from 'react-router-dom';
 import { CpuInfo } from './hwinfo/CpuInfo';
 import { MemoryInfo } from './hwinfo/MemoryInfo';
 import { DiskInfo } from './hwinfo/DiskInfo';
+import { GpuInfo } from './hwinfo/GpuInfo';
 
 export const App = () => {
 
@@ -28,6 +29,9 @@ export const App = () => {
           </Route>
           <Route path="/disk">
             <DiskInfo/>
+          </Route>
+          <Route path="/gpu">
+            <GpuInfo/>
           </Route>
         </Switch>
       </div>
