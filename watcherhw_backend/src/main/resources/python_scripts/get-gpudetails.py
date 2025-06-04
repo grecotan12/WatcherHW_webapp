@@ -21,7 +21,7 @@ while True:
     gpu_info = computer.gpu
     gpu_name = next(iter(gpu_info))
     print("-"*5 + bcolors.BOLD + gpu_name + bcolors.ENDC + "-"*5)
-    power = gpu_info[gpu_name]['Power']['GPU Power']
+    power = gpu_info[gpu_name]['Power']
     print("GPU Power: " + bcolors.OKCYAN + f"{power}" + bcolors.ENDC)
     print("-"*5 + bcolors.BOLD + "Load" + bcolors.ENDC + "-"*5)
     loads = gpu_info[gpu_name]['Load']
