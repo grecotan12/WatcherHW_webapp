@@ -49,4 +49,10 @@ public class TheController {
     public String checkLibs() {
         return getHardwareService.runScript("./watcherhw_backend/src/main/resources/python_scripts/check_libs.py", "");
     }
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @GetMapping("/getNetworkSpeed")
+    public String getNetworkSpeed() {
+        return getHardwareService.runScript("./watcherhw_backend/src/main/resources/python_scripts/test_speed.py", "");
+    }
 }

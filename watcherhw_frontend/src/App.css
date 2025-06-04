@@ -37,6 +37,7 @@ body {
 .network-title {
    font-weight: 800;
    font-size: 3rem;
+   text-shadow: 5px 10px 8px #888888;;
 }
 
 .table-striped>tbody>tr:nth-child(even)>td,
@@ -304,3 +305,5 @@ table, .accordion-item, button {
 .navbar-toggler {
    box-shadow: none;
 }
+
+

@@ -1,38 +1,38 @@
 # Python program to test
 # internet speed
 
-import speedtest  
+import json
+import speedtest 
+import sys
 
+try:
+    st = speedtest.Speedtest()
+except:
+    speed_info = dict()
+    speed_info["Download Speed"] = "Network Not Stable. Try again later"
+    speed_info["Upload Speed"] = "Network Not Stable. Try again later"
+    speed_info["Ping"] = "Network Not Stable. Try again later"
+    print(json.dumps(speed_info))
+    sys.exit()
 
-st = speedtest.Speedtest()
+def get_size(bytes, suffix="B"):
+        """
+        Scale bytes to its proper format
+        e.g:
+            1253656 => '1.20MB'
+            1253656678 => '1.17GB'
+        """
+        factor = 1024
+        for unit in ["", "K", "M", "G", "T", "P"]:
+            if bytes < factor:
+                return f"{bytes:.2f}{unit}{suffix}"
+            bytes /= factor
 
-option = int(input('''What speed do you want to test:  
+speed_info = dict()
+speed_info["Download Speed"] = get_size(st.download()) 
+speed_info["Upload Speed"] = get_size(st.upload()) 
+servernames =[]  
+st.get_servers(servernames)  
+speed_info["Ping"] = st.results.ping
 
-1) Download Speed  
-
-2) Upload Speed  
-
-3) Ping 
-
-Your Choice: '''))
-
-
-if option == 1:  
-
-    print(st.download())  
-
-elif option == 2: 
-
-    print(st.upload())  
-
-elif option == 3:  
-
-    servernames =[]  
-
-    st.get_servers(servernames)  
-
-    print(st.results.ping)  
-
-else:
-
-    print("Please enter the correct choice !")
+print(json.dumps(speed_info))
