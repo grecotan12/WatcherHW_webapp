@@ -164,7 +164,7 @@ export const DiskInfo = () => {
                 </table>
             </div>
 
-            <div className="accordion" id="accordion">
+            <div className="accordion mb-5" id="accordion">
                 <div className="accordion-item">
                     <h2 className="accordion-header">
                         <button className="accordion-button" type="button"
@@ -188,7 +188,7 @@ export const DiskInfo = () => {
                     </form>
                 </div>
             </div>
-            <div className="text-center disk-note">Reload page to recalculate</div>
+            <div className="text-center disk-note mb-5">Reload page to recalculate</div>
         </div>
     )
 }

@@ -117,7 +117,7 @@ export const CpuInfo = () => {
                 <button className="btn btn-primary runButton" onClick={fetchCpuPowers}>CPU Powers</button>
                 <button className="btn btn-primary runButton" onClick={fetchCpuVols}>CPU Voltages</button>
             </div>
-            <div className="container d-flex justify-content-center mb-5">
+            <div className="container d-flex justify-content-center mb-5 the-table">
                 <table className="table table-striped">
                     <tbody>
                         <tr>

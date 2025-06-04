@@ -1,7 +1,7 @@
 ------------------
 System Information
 ------------------
-      Time of this report: 6/3/2025, 01:06:48
+      Time of this report: 6/3/2025, 15:41:00
              Machine name: LAPTOP-6GJESGTN
                Machine Id: {D4969BDB-BB95-4E95-B047-3BA0FD1C44DD}
          Operating System: Windows 11 Home 64-bit (10.0, Build 26100) (26100.ge_release.240331-1435)
@@ -12,7 +12,7 @@ System Information
                 Processor: 12th Gen Intel(R) Core(TM) i5-1235U (12 CPUs), ~1.3GHz
                    Memory: 8192MB RAM
       Available OS Memory: 7916MB RAM
-                Page File: 15653MB used, 6598MB available
+                Page File: 16045MB used, 6207MB available
               Windows Dir: C:\Windows
           DirectX Version: DirectX 12
       DX Setup Parameters: Not found
@@ -399,7 +399,7 @@ PS/2 Devices
 Disk & DVD/CD-ROM Drives
 ------------------------
       Drive: C:
- Free Space: 298.6 GB
+ Free Space: 297.5 GB
 Total Space: 486.1 GB
 File System: NTFS
       Model: SAMSUNG MZAL8512HDLU-00BL2
@@ -1260,7 +1260,7 @@ Disabled Media Sources
 ---------------
 EVR Power Information
 ---------------
-Current Setting: {5C67A112-A4C9-483F-B4A7-1D473BECAFDC} (Quality) 
+Current Setting: {651288E5-A7ED-4076-A96B-6CC62D848FE1} (Balanced)
   Quality Flags: 2576
     Enabled:
     Force throttling
@@ -1288,6 +1288,44 @@ Diagnostics
 
 Windows Error Reporting:
 +++ WER0 +++:
+Fault bucket 1506838486514269947, type 5
+Event Name: StoreAgentInstallFailure1
+Response: Not available
+Cab Id: 0
+
+Problem signature:
+P1: Update;ScanForUpdatesForUser-taskhostw-SearchForAllUpdatesWithUpdateOptionsAsync
+P2: 80073d02
+P3: 26100
+P4: 4061
+P5: Windows.Desktop
+P6: V
+P7: 
+P8: 
+P9: 
+P10: 
+
+
++++ WER1 +++:
+Fault bucket , type 0
+Event Name: StoreAgentInstallFailure1
+Response: Not available
+Cab Id: 0
+
+Problem signature:
+P1: Update;ScanForUpdatesForUser-taskhostw-SearchForAllUpdatesWithUpdateOptionsAsync
+P2: 80073d02
+P3: 26100
+P4: 4061
+P5: Windows.Desktop
+P6: V
+P7: 
+P8: 
+P9: 
+P10: 
+
+
++++ WER2 +++:
 Fault bucket 1395204913627703936, type 5
 Event Name: RADAR_PRE_LEAK_64
 Response: Not available
@@ -1306,7 +1344,7 @@ P9:
 P10: 
 
 
-+++ WER1 +++:
++++ WER3 +++:
 Fault bucket 1773105331027942066, type 5
 Event Name: UpdateAgentDiag
 Response: Not available
@@ -1325,7 +1363,7 @@ P9: ge_release_svc_prod1
 P10: 4061
 
 
-+++ WER2 +++:
++++ WER4 +++:
 Fault bucket 1487638384963101419, type 5
 Event Name: StoreAgentDownloadFailure1
 Response: Not available
@@ -1344,7 +1382,7 @@ P9:
 P10: 
 
 
-+++ WER3 +++:
++++ WER5 +++:
 Fault bucket , type 0
 Event Name: StoreAgentDownloadFailure1
 Response: Not available
@@ -1363,7 +1401,7 @@ P9:
 P10: 
 
 
-+++ WER4 +++:
++++ WER6 +++:
 Fault bucket , type 0
 Event Name: MoAppHang
 Response: Not available
@@ -1382,45 +1420,45 @@ P9:
 P10: 
 
 
-+++ WER5 +++:
-Fault bucket 1982396975397710552, type 1
-Event Name: APPCRASH
-Response: Not available
-Cab Id: 0
-
-Problem signature:
-P1: OpenHardwareMonitorReport.exe
-P2: 0.0.0.0
-P3: 595f33ab
-P4: KERNELBASE.dll
-P5: 10.0.26100.4061
-P6: c24bdd22
-P7: e0434352
-P8: 0015df24
-P9: 
-P10: 
-
-
-+++ WER6 +++:
-Fault bucket 1982396975397710552, type 1
-Event Name: APPCRASH
-Response: Not available
-Cab Id: 0
-
-Problem signature:
-P1: OpenHardwareMonitorReport.exe
-P2: 0.0.0.0
-P3: 595f33ab
-P4: KERNELBASE.dll
-P5: 10.0.26100.4061
-P6: c24bdd22
-P7: e0434352
-P8: 0015df24
-P9: 
-P10: 
-
-
 +++ WER7 +++:
+Fault bucket 1982396975397710552, type 1
+Event Name: APPCRASH
+Response: Not available
+Cab Id: 0
+
+Problem signature:
+P1: OpenHardwareMonitorReport.exe
+P2: 0.0.0.0
+P3: 595f33ab
+P4: KERNELBASE.dll
+P5: 10.0.26100.4061
+P6: c24bdd22
+P7: e0434352
+P8: 0015df24
+P9: 
+P10: 
+
+
++++ WER8 +++:
+Fault bucket 1982396975397710552, type 1
+Event Name: APPCRASH
+Response: Not available
+Cab Id: 0
+
+Problem signature:
+P1: OpenHardwareMonitorReport.exe
+P2: 0.0.0.0
+P3: 595f33ab
+P4: KERNELBASE.dll
+P5: 10.0.26100.4061
+P6: c24bdd22
+P7: e0434352
+P8: 0015df24
+P9: 
+P10: 
+
+
++++ WER9 +++:
 Fault bucket 2133828220890368903, type 5
 Event Name: RADAR_PRE_LEAK_64
 Response: Not available
@@ -1432,44 +1470,6 @@ P2: 25.80.427.3
 P3: 10.0.26100.2.0.0
 P4: 
 P5: 
-P6: 
-P7: 
-P8: 
-P9: 
-P10: 
-
-
-+++ WER8 +++:
-Fault bucket , type 0
-Event Name: MoAppHang
-Response: Not available
-Cab Id: 0
-
-Problem signature:
-P1: windows.immersivecontrolpanel_10.0.8.1000_neutral_neutral_cw5n1h2txyewy
-P2: praid:microsoft.windows.immersivecontrolpanel
-P3: 10.0.26100.3912
-P4: d9ef9bd2
-P5: 908c
-P6: 2097152
-P7: 
-P8: 
-P9: 
-P10: 
-
-
-+++ WER9 +++:
-Fault bucket 1324146820393734328, type 5
-Event Name: StoreAgentScanForUpdatesFailure0
-Response: Not available
-Cab Id: 0
-
-Problem signature:
-P1: Update;
-P2: 8024402c
-P3: 26100
-P4: 4061
-P5: Windows.Desktop
 P6: 
 P7: 
 P8: 

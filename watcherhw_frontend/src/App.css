@@ -7,7 +7,8 @@
 
 
 body {
-   background-color: #FFFBDE;
+   background: #d1bc66;
+   background: linear-gradient(90deg, rgba(209, 188, 102, 1) 0%, rgba(144, 209, 202, 1) 100%);
 }
 
 
@@ -294,4 +295,12 @@ body {
    100% {
       background-image: url("./images/gpu_animation/08_gpu.png");
    }
+}
+
+table, .accordion-item, button {
+   box-shadow: 5px 10px 8px #888888;
+}
+
+.navbar-toggler {
+   box-shadow: none;
 }
