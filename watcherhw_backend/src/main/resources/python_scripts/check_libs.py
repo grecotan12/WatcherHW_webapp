@@ -24,5 +24,7 @@ if __name__ == "__main__":
         install_module('pywin32')
     if check_module('PyLibreHardwareMonitor') == False:
         install_module('PyLibreHardwareMonitor')
+    if check_module('speedtest-cli') == False:
+        install_module('speedtest-cli')
 
     print(json.dumps("Done"))

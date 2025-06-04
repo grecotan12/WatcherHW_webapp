@@ -58,6 +58,14 @@ export const NetworkInfo = () => {
         finally { setIsSpeedLoading(false) }
     }
 
+    if (networkInfo.length == 0) {
+        return (
+            <div>
+                <Spinner />
+                <div className="text-center disk-note">Loading libraries and data</div>
+            </div>
+        );
+    }
 
     return (
         <div className="container mt-5">

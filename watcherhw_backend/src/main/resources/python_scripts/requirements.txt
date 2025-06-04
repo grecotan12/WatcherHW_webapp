@@ -3,3 +3,4 @@ lib-platform
 py-cpuinfo
 pywin32
 PyLibreHardwareMonitor
+speedtest-cli
