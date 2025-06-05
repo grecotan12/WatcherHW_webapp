@@ -108,53 +108,61 @@ if len(sys.argv) == 2:
         sys.exit()
 
     if sys.argv[1] == "network":
-        network_info = dict()
         # Traverse the ipconfig information
-        data = subprocess.check_output(['ipconfig','/all']).decode('utf-8').split('\n')
+        if os.name == "nt":
+            network_info = dict()
+            data = subprocess.check_output(['ipconfig','/all']).decode('utf-8').split('\n')
 
-        # Arrange the bytes data
-        for item in data:
-            info = item.split('\r')[:-1]
-            if len(info) == 1:
-                if info[0] != '':
-                    the_list = info[0].split(":")
-                    if len(the_list) == 2:
-                        key = the_list[0].replace(".", "")
-                        if key.strip() != "" and the_list[1].strip() != "":
-                            network_info[key.strip()] = the_list[1].strip()
-        
-        print(json.dumps(network_info))
-        sys.exit()
+            # Arrange the bytes data
+            for item in data:
+                info = item.split('\r')[:-1]
+                if len(info) == 1:
+                    if info[0] != '':
+                        the_list = info[0].split(":")
+                        if len(the_list) == 2:
+                            key = the_list[0].replace(".", "")
+                            if key.strip() != "" and the_list[1].strip() != "":
+                                network_info[key.strip()] = the_list[1].strip()
+            
+            print(json.dumps(network_info))
+            sys.exit()
+        else:
+            print()
+            # Need to do something for LINUX or Docker Image
 
     if sys.argv[1] == "gpu":
-        gpu_info = dict()
-        if not os.path.exists('help.txt'):
-            subprocess.run(["dxdiag", "/t", "./watcherhw_backend/src/main/resources/python_scripts/help.txt"])
+        if os.name == "nt":
+            gpu_info = dict()
+            if not os.path.exists('help.txt'):
+                subprocess.run(["dxdiag", "/t", "./watcherhw_backend/src/main/resources/python_scripts/help.txt"])
 
-        try:
-            with open('./watcherhw_backend/src/main/resources/python_scripts/help.txt', 'r') as file:
-                for line in file:
-                    if "Card name: " in line:
-                        gpu_info["name"] = line.strip().split(":")[1].strip()
-                    if "Chip type: " in line:
-                        gpu_info["chip_type"] = line.strip().split(":")[1].strip()
-                    if "Device Status: " in line:
-                        gpu_info["dev_status"] = line.strip().split(":")[1].strip()
-                    if "Device Problem Code: " in line:
-                        gpu_info["problem_code"] = line.strip().split(":")[1].strip()
-                    if "Driver Problem Code: " in line:
-                        gpu_info["driver_code"] = line.strip().split(":")[1].strip()
-                    if "Display Memory: " in line:
-                        gpu_info["display_mem"] = line.strip().split(":")[1].strip()
-                    if "Dedicated Memory: " in line:
-                        gpu_info["ded_mem"] = line.strip().split(":")[1].strip()
-                    if "Shared Memory: " in line:
-                        gpu_info["shared_mem"] = line.strip().split(":")[1].strip()
-        except FileNotFoundError:
-            print(None)  # Return None if the file does not exist
+            try:
+                with open('./watcherhw_backend/src/main/resources/python_scripts/help.txt', 'r') as file:
+                    for line in file:
+                        if "Card name: " in line:
+                            gpu_info["name"] = line.strip().split(":")[1].strip()
+                        if "Chip type: " in line:
+                            gpu_info["chip_type"] = line.strip().split(":")[1].strip()
+                        if "Device Status: " in line:
+                            gpu_info["dev_status"] = line.strip().split(":")[1].strip()
+                        if "Device Problem Code: " in line:
+                            gpu_info["problem_code"] = line.strip().split(":")[1].strip()
+                        if "Driver Problem Code: " in line:
+                            gpu_info["driver_code"] = line.strip().split(":")[1].strip()
+                        if "Display Memory: " in line:
+                            gpu_info["display_mem"] = line.strip().split(":")[1].strip()
+                        if "Dedicated Memory: " in line:
+                            gpu_info["ded_mem"] = line.strip().split(":")[1].strip()
+                        if "Shared Memory: " in line:
+                            gpu_info["shared_mem"] = line.strip().split(":")[1].strip()
+            except FileNotFoundError:
+                print(None)  # Return None if the file does not exist
 
-        print(json.dumps(gpu_info))
-        sys.exit()
+            print(json.dumps(gpu_info))
+            sys.exit()
+        else:
+            # DO SOMETHING FOR LINUX HERE
+            print()
 
 else:
     warnings.warn('WARNING: PLEASE PASS IN ONE ARGUMENT')

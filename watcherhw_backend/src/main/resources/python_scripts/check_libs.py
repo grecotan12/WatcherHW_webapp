@@ -2,6 +2,7 @@ import importlib
 import json
 import subprocess
 import sys
+import os
 
 def check_module(module):
     try:
@@ -20,11 +21,12 @@ if __name__ == "__main__":
         install_module('lib-platform')
     if check_module('cpuinfo') == False:
         install_module('py-cpuinfo')
-    if check_module('win32com') == False:
-        install_module('pywin32')
-    if check_module('PyLibreHardwareMonitor') == False:
-        install_module('PyLibreHardwareMonitor')
     if check_module('speedtest-cli') == False:
         install_module('speedtest-cli')
+    if os.name == "nt":
+        if check_module('win32com') == False:
+            install_module('pywin32')
+        if check_module('PyLibreHardwareMonitor') == False:
+            install_module('PyLibreHardwareMonitor')
 
     print(json.dumps("Done"))

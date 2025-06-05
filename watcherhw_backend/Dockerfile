@@ -9,6 +9,10 @@ RUN mvn clean install
 # https://stackoverflow.com/questions/25845538/how-to-use-sudo-inside-a-docker-container
 FROM ubuntu:22.04
 RUN apt-get update && apt-get install -y openjdk-17-jre-headless python3 python3-pip
+RUN apt-get -y install sudo
+RUN useradd -m docker && echo "docker:docker" | chpasswd && adduser docker sudo
+USER docker
+CMD /bin/bash
 WORKDIR /app
 COPY --from=builder /app/target/*.jar app.jar
 COPY ./scripts ./scripts

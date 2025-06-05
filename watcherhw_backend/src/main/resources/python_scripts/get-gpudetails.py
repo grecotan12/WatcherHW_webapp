@@ -26,7 +26,7 @@ while True:
     print("-"*5 + bcolors.BOLD + "Load" + bcolors.ENDC + "-"*5)
     loads = gpu_info[gpu_name]['Load']
     for key, value in loads.items():
-          print(f"{key}: " + bcolors.OKGREEN + f"{power}" + bcolors.ENDC)
+          print(f"{key}: " + bcolors.OKGREEN + f"{value}" + bcolors.ENDC)
     print("-"*5 + bcolors.BOLD + "Temperature" + bcolors.ENDC + "-"*5)
     gpu_temp = WinTmp.GPU_Temp()
     if gpu_temp == None:

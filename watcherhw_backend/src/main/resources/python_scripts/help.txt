@@ -1,7 +1,7 @@
 ------------------
 System Information
 ------------------
-      Time of this report: 6/4/2025, 00:15:36
+      Time of this report: 6/5/2025, 00:17:24
              Machine name: LAPTOP-6GJESGTN
                Machine Id: {D4969BDB-BB95-4E95-B047-3BA0FD1C44DD}
          Operating System: Windows 11 Home 64-bit (10.0, Build 26100) (26100.ge_release.240331-1435)
@@ -12,7 +12,7 @@ System Information
                 Processor: 12th Gen Intel(R) Core(TM) i5-1235U (12 CPUs), ~1.3GHz
                    Memory: 8192MB RAM
       Available OS Memory: 7916MB RAM
-                Page File: 17247MB used, 5005MB available
+                Page File: 17619MB used, 4120MB available
               Windows Dir: C:\Windows
           DirectX Version: DirectX 12
       DX Setup Parameters: Not found
@@ -399,7 +399,7 @@ PS/2 Devices
 Disk & DVD/CD-ROM Drives
 ------------------------
       Drive: C:
- Free Space: 296.5 GB
+ Free Space: 287.3 GB
 Total Space: 486.1 GB
 File System: NTFS
       Model: SAMSUNG MZAL8512HDLU-00BL2
