@@ -11,7 +11,7 @@ public class GetHardwareService {
     public String runScript(String script, String argument) {
         try {
 
-            String [] cmd = {"python", script, argument};
+            String [] cmd = {"python3", script, argument};
 
             Process process = Runtime.getRuntime().exec(cmd);
 

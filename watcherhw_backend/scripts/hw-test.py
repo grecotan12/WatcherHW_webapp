@@ -49,7 +49,10 @@ if len(sys.argv) == 2:
     if sys.argv[1] == "cpu":
         cpuinfo = dict()
         cpufreq = psutil.cpu_freq()
-        processor_name = f"{get_cpu_info()["brand_raw"]} {get_cpu_info()["count"]} (CPUs) {get_cpu_info()["hz_actual_friendly"]}"
+        brand_name = get_cpu_info()["brand_raw"]
+        cpu_counts = get_cpu_info()["count"]
+        cpu_hz = get_cpu_info()["hz_actual_friendly"]
+        processor_name = f"{brand_name} {cpu_counts} (CPUs) {cpu_hz}"
         cpuinfo["processor"] = processor_name
         cpuinfo["max_frequency"] = f"{cpufreq.max:.2f}Mhz"
         cpuinfo["min_frequency"] = f"{cpufreq.min:.2f}Mhz"
