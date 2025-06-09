@@ -25,3 +25,7 @@ Open your command prompt for windows.
 cd into the directory that have the .jar file and python_scripts
 Run
 java -jar watcherhw-0.0.1-SNAPSHOT.jar
+
+# Incoming feature
+Prediction using machine learning python sklearn library.
+Other OS compability.
