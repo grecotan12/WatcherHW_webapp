@@ -1,6 +1,9 @@
 import subprocess
+import os
 
-file_path = "./help.txt"  # Replace with the actual file path
+current_directory = os.getcwd()
+
+file_path = f"{current_directory}\\help.txt"  # Replace with the actual file path
 
 try:
     subprocess.run(["del", file_path], check=True, shell=True)
