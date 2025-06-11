@@ -23,7 +23,7 @@ if not admin.isUserAdmin():
             admin.runAsAdmin(f"python -i ./python_scripts/get-gpudetails.py")
         if sys.argv[1] == 'process_cpu':
             print(json.dumps("Stressing CPU to get Data For Prediction..."))
-            admin.runAsAdmin(f"python -i ./python_scripts/stress-test-cpu.py")
+            admin.runAsAdmin(f"python -i ./python_scripts/cputemp_stress_model.py")
 else:
     print(json.dumps("Now you are root!"))
     input("")
