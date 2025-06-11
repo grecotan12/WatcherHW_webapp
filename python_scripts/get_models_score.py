@@ -1,11 +1,11 @@
 from models_eval import ModelEval
 import pandas as pd
+from sklearn.preprocessing import StandardScaler
 
 if __name__ == "__main__":
-    dataset = pd.read_csv('cpu_data.csv')
+    dataset = pd.read_csv('file')
     X = dataset.iloc[:, :-1].values
     y = dataset.iloc[:, -1].values
-
     model_eval = ModelEval()
     scores_total = [model_eval.linear_model(X, y), model_eval.poly_model(X, y),
                     model_eval.dec_model(X, y), model_eval.svg_model(X, y), model_eval.rfr_model(X, y)]

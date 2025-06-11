@@ -7,7 +7,7 @@ import subprocess
 import os
 
 current_directory = os.getcwd()
-file_path = f"{current_directory}\\cpu_data.csv" 
+file_path = f"{current_directory}\\cpu_temp_data.csv" 
 subprocess.run(["del", file_path], check=True, shell=True)
 
 data = []
@@ -66,7 +66,7 @@ while matrix_num <= 3000:
     print(f"Stress test matrix num: {matrix_num} completed.")
     matrix_num += 500
 
-with open('cpu_data.csv', 'w', newline='') as csvfile:
+with open('cpu_temp_data.csv', 'w', newline='') as csvfile:
     fieldnames = ['Usage', 'Power', 'Frequency', 'Voltage', 'Temperature']
     writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
     writer.writeheader()
