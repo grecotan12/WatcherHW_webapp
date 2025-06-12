@@ -3,7 +3,7 @@ import pandas as pd
 from sklearn.preprocessing import StandardScaler
 
 if __name__ == "__main__":
-    dataset = pd.read_csv('file')
+    dataset = pd.read_csv('cpu_clock_data.csv')
     X = dataset.iloc[:, :-1].values
     y = dataset.iloc[:, -1].values
     model_eval = ModelEval()

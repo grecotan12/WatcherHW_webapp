@@ -46,7 +46,7 @@ if args.infotype:
             clocks = cpu_info[cpu_name]['Clock']
             for key, value in clocks.items():
                 print(f"{key}: " + bcolors.HEADER + ("%.2f" % value) + bcolors.ENDC)
-            time.sleep(5)
+            time.sleep(1)
     elif args.infotype == 'pow':
         while True:
             os.system("cls" if os.name == "nt" else "clear")
