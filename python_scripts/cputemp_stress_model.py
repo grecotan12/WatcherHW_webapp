@@ -5,6 +5,7 @@ from PyLibreHardwareMonitor import Computer
 import csv
 import subprocess
 import os
+import pandas as pd
 
 current_directory = os.getcwd()
 file_path = f"{current_directory}\\cpu_temp_data.csv" 
@@ -57,8 +58,11 @@ while matrix_num <= 3000:
             voltage_average /= len(voltages.values())
             info["Voltage"] = round(voltage_average, 2)
 
-            temperatures = cpu_info[cpu_name]["Temperature"]
-            info["Temperature"] = round(temperatures["Core Average"], 2)
+            temps = cpu_info[cpu_name]['Temperature']
+            temp_averages = []
+            for value in powers.values():
+                temp_averages.append(value)
+            info["Temperature"] = round(pd.Series(temp_averages).mean(), 2)
 
             data.append(info)
             count += 1

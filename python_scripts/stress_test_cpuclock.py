@@ -18,13 +18,13 @@ cpu_name = next(iter(cpu_info))
 
 matrix_num = 0
 
-while matrix_num <= 5000:
+while matrix_num <= 3000:
     # Create large matrices
     m1 = np.random.rand(matrix_num, matrix_num)
     m2 = np.random.rand(matrix_num, matrix_num)
 
     start_time = time.time()
-    duration = 120  # Seconds
+    duration = 30  # Seconds
     count = 1
     while time.time() - start_time < duration:
         # Perform matrix multiplication and normalization repeatedly
@@ -35,8 +35,11 @@ while matrix_num <= 5000:
         
             info["Usage"] = round(psutil.cpu_percent(), 2)
 
-            temperatures = cpu_info[cpu_name]["Temperature"]
-            info["Temperature"] = round(temperatures["Core Average"], 2)
+            temps = cpu_info[cpu_name]['Temperature']
+            temp_averages = []
+            for value in temps.values():
+                temp_averages.append(value)
+            info["Temperature"] = round(pd.Series(temp_averages).mean(), 2)
 
             powers = cpu_info[cpu_name]['Power']
             power_averages = []
@@ -56,8 +59,8 @@ while matrix_num <= 5000:
                 if key == "Bus Speed":
                     continue
                 else:
-                    clock_averages.append(value / 1000)
-            info["clock_ghz"] = round(pd.Series(clock_averages).mean(), 2)
+                    clock_averages.append(value)
+            info["clock_mhz"] = round(pd.Series(clock_averages).mean(), 2)
 
             data.append(info)
             count += 1
