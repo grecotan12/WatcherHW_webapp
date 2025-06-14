@@ -56,11 +56,8 @@ while matrix_num <= 3000:
             clock_averages = []
             clocks = cpu_info[cpu_name]['Clock']
             for key, value in clocks.items():
-                if key == "Bus Speed":
-                    continue
-                else:
-                    clock_averages.append(value)
-            info["clock_mhz"] = round(pd.Series(clock_averages).mean(), 2)
+                clock_averages.append(value)
+            info["clock_mhz"] = round(max(clock_averages), 2)
 
             data.append(info)
             count += 1
