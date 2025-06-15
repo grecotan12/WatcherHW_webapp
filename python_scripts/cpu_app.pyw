@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import ttk
 from PyLibreHardwareMonitor import Computer
 import argparse
+import tkinter.font as tkFont
 
 parser = argparse.ArgumentParser()
 parser.add_argument('-i', '--infotype', 
@@ -22,7 +23,16 @@ if args.infotype:
         elif args.infotype == "clock":
             the_info = cpu_info[cpu_name]["Clock"]
         for i, temp_val in enumerate(the_info.values()):
-            temps[i].config(text=f"{round(temp_val, 2)}")
+            the_val = ""
+            if args.infotype == "temp":
+                the_val = f"{round(temp_val, 2)}°C"
+            elif args.infotype == "pow":
+                the_val = f"{round(temp_val, 2)} W"
+            elif args.infotype == "vol":
+                the_val = f"{round(temp_val, 2)} V"
+            elif args.infotype == "clock":
+                the_val = f"{round(temp_val, 2)} Mhz"
+            temps[i].config(text=the_val)
         window.after(1000, update_vals)
             
     def create_widget(parent, widget_type, **options):
@@ -45,10 +55,19 @@ if args.infotype:
         the_info = cpu_info[cpu_name]["Clock"]
 
     window = tk.Tk()
-    window.geometry("425x400")
-    window.title("CPU Details")
+    window.geometry("600x400")
+    
     row_c = 0
-
+    
+    if args.infotype == "temp":
+        window.title("CPU Temperature")
+    elif args.infotype == "pow":
+        window.title("CPU Power")
+    elif args.infotype == "vol":
+        window.title("CPU Voltage")
+    elif args.infotype == "clock":
+        window.title("CPU Clock")
+    
     canvas = tk.Canvas(window)
     canvas.grid(row=0, column=0, sticky="nsew")
 
@@ -63,22 +82,30 @@ if args.infotype:
 
     temps = []
     for key, value in the_info.items():
-        key = create_widget(frame, tk.Label, text=f"{key}", 
-                        width=30,
-                        height=1,
-                        bg='lightblue')
-        key.grid(row = row_c , column = 0, padx=10, pady=1)
+        label_font = tkFont.Font(family="Helvetica", size=12)
+        key = create_widget(frame, tk.Label, text=f"{key}", height=1, padx=10, pady=10,
+                        bg='#90D1CA', font=label_font)
+        key.grid(row = row_c , column = 0, padx=10, pady=2)
 
-        value = create_widget(frame, tk.Label, 
-                        text=f"{round(value, 2)}",
-                        width=20,
-                        height=1,
-                        bg='lightblue', 
+        the_val = ""
+        if args.infotype == "temp":
+            the_val = f"{round(value, 2)}°C"
+        elif args.infotype == "pow":
+            the_val = f"{round(value, 2)} W"
+        elif args.infotype == "vol":
+            the_val = f"{round(value, 2)} V"
+        elif args.infotype == "clock":
+            the_val = f"{round(value, 2)} Mhz"
+        
+        val_font = tkFont.Font(family="Arial", size=12, weight=tkFont.BOLD)
+        value = create_widget(frame, tk.Label, fg="#FFFBDE",
+                        text=the_val, height=1, width=15, padx=10, pady=10,
+                        bg='#129990', 
                         relief=tk.RAISED,
                         bd=3,
                         highlightthickness=2,
-                        highlightbackground='black')
-        value.grid(row = row_c, column = 1, padx=10, pady=1)
+                        highlightbackground='black', font=val_font)
+        value.grid(row = row_c, column = 1, padx=10, pady=2)
         temps.append(value)
         row_c += 1
     frame.update_idletasks()
